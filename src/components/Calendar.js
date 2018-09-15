@@ -9,10 +9,6 @@ export default class Calendar extends Component {
     }
     
     createCalendar = () => {
-    
-        if (!this.props.startDate || !this.props.numberDays) {
-            return [];
-        }
 
         let startDate = moment(this.props.startDate, 'YYYY-MM-DD');
         let dates = {};
@@ -44,7 +40,11 @@ export default class Calendar extends Component {
     
         return dates;
     }
-    
+     
+    componentDidMount() {
+        this.setState({ dates: this.createCalendar()});
+    }
+
     componentWillReceiveProps() {
         this.setState({ dates: this.createCalendar()});
     }

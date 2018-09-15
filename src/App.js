@@ -7,19 +7,18 @@ class App extends Component {
   state = {
     startDate: null,
     numberDays: 0,
-    countryCode: null,
-    version: 1
+    countryCode: null
   }
 
-  updateCalendar = (dateState) => {
-    this.setState((state) => ({ ...dateState, version: state.version + 1 }))
+  updateCalendar = dateState => {
+    this.setState({ ...dateState });
   }
 
   render() {
     return (
       <div className="App">
         <Form onUpdate={this.updateCalendar}></Form>
-        <Calendar params= {this.state.version} {...this.state} ></Calendar>
+        <Calendar {...this.state} ></Calendar>
       </div>
     );
   }

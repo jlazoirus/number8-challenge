@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
 
 export default class Form extends Component {
+    static defaultProps = {
+        onUpdate: () => null
+    }
+    
+    state = {
+        startDate: '2008-08-15',
+        numberDays : 17,
+        countryCode: 'US'
+    }
+    
+    submit = () => {
+        this.props.onUpdate({...this.state})
+    }
+    
+    updateForm = ({ target : { name, value}}) => {
+        this.setState({[name]: value})
+    }
+
     render () {
         return (
             <div className="form">
@@ -26,7 +44,7 @@ export default class Form extends Component {
                     <input type="text" 
                     name="countryCode"
                     defaultValue={this.state.countryCode}
-                    onChange={this.updateForm} 
+                    onChange={this.updateFormValues} 
                     />
                 </div>
                 <div className="row submit">

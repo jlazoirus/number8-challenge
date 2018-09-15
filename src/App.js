@@ -14,12 +14,12 @@ class App extends Component {
   updateCalendar = (dateState) => {
     this.setState((state) => ({ ...dateState, version: state.version + 1 }))
   }
-  
+
   render() {
     return (
       <div className="App">
         <Form onUpdate={this.updateCalendar}></Form>
-        <Calendar></Calendar>
+        <Calendar params= {this.state.version} {...this.state} ></Calendar>
       </div>
     );
   }

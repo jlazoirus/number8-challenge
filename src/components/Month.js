@@ -16,14 +16,25 @@ export default class Month extends Component {
     }
 
     render() {
-      return (
-        <div className="calendar">
-            <div className="month">
-                <div className="name">
-                {this.state.months[this.props.name.split('-')[1] - 1]} {this.props.name.split('-')[0]}
+        const weeks = Object.keys(this.props.params);
+        return (
+            <div className="calendar">
+                <div className="month">
+                    <div className="name">
+                    {this.state.months[this.props.name.split('-')[1] - 1]} {this.props.name.split('-')[0]}
+                    </div>
+                    { weeks.map(weekNumber => (
+                        <div className="row" key={weekNumber}>
+                            { this.state.days.map(day => (
+                                <Day 
+                                    key={`${weekNumber}-${day}`} 
+                                    params={this.props.params[weekNumber][day]} 
+                                />
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
-        </div>
-      );
+        );
     }
   }

@@ -51,25 +51,28 @@ export default class Calendar extends Component {
 
     render() {
         const months = Object.keys(this.state.dates);
-        return (
-        <div className="calendar">
-            <div className="row weekday-row">
-                <div className="weekday">S</div>
-                <div className="weekday">M</div>
-                <div className="weekday">T</div>
-                <div className="weekday">W</div>
-                <div className="weekday">T</div>
-                <div className="weekday">F</div>
-                <div className="weekday">S</div>
-            </div>
-            {months.map( month => (
-                <Month
-                key={month}
-                name={month}
-                params={this.state.dates[month]}
-                />
-            ))}
-        </div>
-      );
+        if (this.props.numberDays) {
+            return (
+                <div className="calendar">
+                    <div className="row weekday-row">
+                        <div className="weekday">S</div>
+                        <div className="weekday">M</div>
+                        <div className="weekday">T</div>
+                        <div className="weekday">W</div>
+                        <div className="weekday">T</div>
+                        <div className="weekday">F</div>
+                        <div className="weekday">S</div>
+                    </div>
+                    {months.map( month => (
+                        <Month
+                        key={month}
+                        name={month}
+                        params={this.state.dates[month]}
+                        />
+                    ))}
+                </div>
+            );
+        }
+        return(<div></div>);
     }
   }

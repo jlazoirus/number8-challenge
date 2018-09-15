@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Calendar from './components/Calendar';
+import Form from './components/Form';
 import './App.css';
 
 class App extends Component {
+  state = {
+    startDate: null,
+    numberDays: 0,
+    countryCode: null,
+    version: 1
+  }
+
+  updateCalendar = (dateState) => {
+    this.setState((state) => ({ ...dateState, version: state.version + 1 }))
+  }
+  
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Form onUpdate={this.updateCalendar}></Form>
+        <Calendar></Calendar>
       </div>
     );
   }
